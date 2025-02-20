@@ -1,0 +1,311 @@
+<html lang="zh-cn" data-theme="default" style="font-size: 106.667px;">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style type="text/css">
+    .anticon {
+      display: inline-block;
+      color: inherit;
+      font-style: normal;
+      line-height: 0;
+      text-align: center;
+      text-transform: none;
+      vertical-align: -0.125em;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .anticon > * {
+      line-height: 1;
+    }
+
+    .anticon svg {
+      display: inline-block;
+    }
+
+    .anticon::before {
+      display: none;
+    }
+
+    .anticon .anticon-icon {
+      display: block;
+    }
+
+    .anticon[tabindex] {
+      cursor: pointer;
+    }
+
+    .anticon-spin::before,
+    .anticon-spin {
+      display: inline-block;
+      -webkit-animation: loadingCircle 1s infinite linear;
+      animation: loadingCircle 1s infinite linear;
+    }
+
+    @-webkit-keyframes loadingCircle {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes loadingCircle {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <meta name="renderer" content="webkit">
+  <title>预约签到</title>
+  <style>body{-webkit-text-size-adjust:100% !important;}</style>
+  <style>
+    .colored {
+      text-align: left;
+      color: rgb(100, 100, 100);
+      display: block;
+    }
+    .spacer {
+      margin-bottom: 10px;
+    }
+  </style>
+  <style>
+    .coloredd {
+      text-align: left;
+      color: rgb(100, 100, 100);
+      font-size: 13px;
+      display: block;
+    }
+  </style>
+  <style>
+    .frame_load_img {
+      display: inline-block;
+      width: 50px;
+    }
+
+    .frame-loader {
+      position: fixed;
+      z-index: 999;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+    }
+
+    @-webkit-keyframes haha1 {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      25% {
+        -webkit-transform: rotate(90deg);
+      }
+      50% {
+        -webkit-transform: rotate(180deg);
+      }
+      75% {
+        -webkit-transform: rotate(270deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    #__vconsole .vc-content {
+      line-height: 12px;
+    }
+  </style>
+  <script src="./预约签到_files/jweixin-1.3.2.js.下载"></script>
+  <script src="./预约签到_files/axios@0.21.4.min.js.下载"></script>
+  <script src="./预约签到_files/jquery@3.6.0.min.js.下载"></script>
+  <script src="./预约签到_files/vue@2.6.10.min.js.下载"></script>
+  <script src="./预约签到_files/element-ui@2.13.0.min.js.下载"></script>
+  <link rel="stylesheet" href="./预约签到_files/element-ui@2.13.0.min.css">
+  <script>
+    //刷新页面
+    function reloadNowPage(nowSourceV) {
+      var search = window.location.search,
+          searchArr = search.indexOf("?") !== -1 ? search.replace('?', '').split("&") : [],
+          nowSearchArr = [],
+          nowSearch = [];
+
+      for(var index in searchArr) {
+        if(searchArr[index].indexOf("appSourceV") !== 0) {
+          nowSearchArr.push(searchArr[index]);
+        }
+      }
+
+      nowSearchArr.push("appSourceV="+nowSourceV);
+      nowSearch = "?"+nowSearchArr.join("&");
+
+      window.location.replace(
+        window.location.protocol+"//"
+        +window.location.host
+        +window.location.pathname
+        +nowSearch
+        +window.location.hash
+      );
+    }
+
+    //获取指定参数值
+    function getQuery (name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+
+      if (r != null) return unescape(r[2]); return null;
+    }
+
+    var nowSourceV = 1739536337225,
+        paramsSourceV = getQuery("appSourceV");
+
+    paramsSourceV = paramsSourceV ? paramsSourceV : 0;
+    if('production' == 'production') {
+      $.ajax({
+        url: "/v2/static/version.js?v="+(new Date()).getTime(),
+        method: 'GET',
+        dataType: 'json',
+        async: false,
+        success: function(res) {
+          if(paramsSourceV !== res.version) {
+            if(res.version != nowSourceV) {
+              reloadNowPage(res.version);
+            }
+          } else {
+            console.log("获取到的版本文件为最新文件，和最新版本不对应");
+          }
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    }
+  </script>
+  <meta name="sourceV" content="1739536337225">
+  <meta name="envWebId" content="hnu">
+  <link href="./预约签到_files/chunk-common.a45d901a7b6db875ab3e.css" rel="stylesheet">
+  <script charset="utf-8" src="./预约签到_files/chunk-bbd28b8e.316676b09ac0578a8cfe.js.下载"></script>
+  <link rel="stylesheet" type="text/css" href="./预约签到_files/chunk-5a2380b4.7ad84e4cabb0cab2a64e.css">
+  <script charset="utf-8" src="./预约签到_files/chunk-5a2380b4.c89a2b19051a1624d46e.js.下载"></script>
+</head>
+<body class="site_mobile_common">
+  <div id="sign_in" class="m_signIn">
+    <div class="tit-top">
+      预约签到
+    </div>
+    <div class="cont">
+      <div class="el-card box-card sign_in_box is-always-shadow">
+        <!---->
+        <div class="el-card__body">
+          <div class="time_result">
+            <span class="date green" style="font-size: 0.24rem;">2025-02-20</span>
+            <!-- 时间元素，每秒更新 -->
+            <span class="time green" style="margin: 0.1rem 0px; font-size: 0.16rem;">20:16:19</span>
+            <!---->
+            <span class="result">
+              <i class="el-icon-success green el-icon"></i>
+              <span class="result_txt green">
+                签到成功
+              </span>
+            </span>
+            <div class="spacer"></div>
+            <!-- 添加特定类以精确更新签到时间 -->
+            <span class="colored signin-date">签到时间： 2025-2-20</span>
+            <div class="spacer"></div> <!-- 添加间距 -->
+            <span class="colored">
+              预约资源： 南校区健身房
+            </span>
+            <div class="spacer"></div>
+            <!-- 添加特定类以精确更新预约时段 -->
+            <span class="colored reserve-time">预约时段： 16:30-18:00</span>
+          </div>
+          <!---->
+        </div>
+      </div>
+      <div class="user_info el-descriptions">
+        <div class="time_result">
+          <span class="coloredd">姓名： 韩培元</span>
+          <div class="spacer"></div> <!-- 添加间距 -->
+          <span class="coloredd">
+            学工号： S2402W0318
+          </span>
+          <div class="spacer"></div>
+          <span class="coloredd">
+            部门： 机械与运载工程学院
+          </span>
+        </div>
+        <div class="el-descriptions__body">
+          <table class="el-descriptions__table"></table>
+        </div>
+      </div>
+      <button type="button" class="el-button el-button--primary">
+        <!---->
+        <!---->
+        <span>查看我的预约</span>
+      </button>
+    </div>
+    <div class="el-loading-mask" style="display: none;">
+      <div class="el-loading-spinner">
+        <svg viewBox="25 25 50 50" class="circular">
+          <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+        </svg>
+        <!---->
+      </div>
+    </div>
+  </div>
+
+  <!-- 添加的 JavaScript 脚本，用于实现时间、日期和预约时段的实时更新 -->
+  <script>
+    // 定位到时间、日期和预约时段元素
+    const timeElement = document.querySelector('.time.green');
+    const topDateElement = document.querySelector('.date.green');
+    const signinDateElement = document.querySelector('.signin-date');
+    const reserveTimeElement = document.querySelector('.reserve-time');
+
+    // 更新时间、日期和预约时段的函数
+    function updateTimeAndDate() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+
+      // 更新时间
+      const hoursStr = hours.toString().padStart(2, '0');
+      const minutesStr = minutes.toString().padStart(2, '0');
+      const secondsStr = now.getSeconds().toString().padStart(2, '0');
+      timeElement.textContent = `${hoursStr}:${minutesStr}:${secondsStr}`;
+
+      // 更新日期
+      const year = now.getFullYear();
+      const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 补0
+      const day = now.getDate().toString().padStart(2, '0'); // 补0
+      const currentDate = `${year}-${month}-${day}`;
+      topDateElement.textContent = currentDate;
+      signinDateElement.textContent = `签到时间： ${currentDate}`;
+
+      // 更新预约时段
+      let reserveTime = "16:30-18:00"; // 默认时段
+      const currentTimeInMinutes = hours * 60 + minutes;
+
+      // 18:20-19:50 的时间范围（转化为分钟）
+      const startTime1 = 18 * 60 + 20; // 18:20 = 1100 分钟
+      const endTime1 = 19 * 60 + 50;   // 19:50 = 1190 分钟
+      // 20:00-21:30 的时间范围（转化为分钟）
+      const startTime2 = 20 * 60;      // 20:00 = 1200 分钟
+      const endTime2 = 21 * 60 + 30;   // 21:30 = 1290 分钟
+
+      if (currentTimeInMinutes >= startTime1 && currentTimeInMinutes <= endTime1) {
+        reserveTime = "18:20-19:50";
+      } else if (currentTimeInMinutes >= startTime2 && currentTimeInMinutes <= endTime2) {
+        reserveTime = "20:00-21:30";
+      }
+
+      reserveTimeElement.textContent = `预约时段： ${reserveTime}`;
+    }
+
+    // 页面加载时立即更新
+    updateTimeAndDate();
+
+    // 每秒更新时间、日期和预约时段
+    setInterval(updateTimeAndDate, 1000);
+  </script>
+</body>
+</html>
