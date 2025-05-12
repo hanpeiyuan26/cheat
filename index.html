@@ -286,11 +286,11 @@
       const currentTimeInMinutes = hours * 60 + minutes;
 
       // 18:20-19:50 的时间范围（转化为分钟）
-      const startTime1 = 18 * 60 + 20; // 18:20 = 1100 分钟
-      const endTime1 = 19 * 60 + 50;   // 19:50 = 1190 分钟
+      const startTime1 = 17 * 60 + 50; // 17:50 
+      const endTime1 = 19 * 60 + 30;   // 19:30
       // 20:00-21:30 的时间范围（转化为分钟）
-      const startTime2 = 20 * 60;      // 20:00 = 1200 分钟
-      const endTime2 = 21 * 60 + 30;   // 21:30 = 1290 分钟
+      const startTime2 = 19 * 60 + 30;      // 19:30
+      const endTime2 = 21 * 60 + 30;   // 21:30
 
       if (currentTimeInMinutes >= startTime1 && currentTimeInMinutes <= endTime1) {
         reserveTime = "18:20-19:50";
